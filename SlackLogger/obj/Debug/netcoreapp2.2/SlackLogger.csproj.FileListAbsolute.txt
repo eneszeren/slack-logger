@@ -1,0 +1,8 @@
+C:\Github\slack-logger\SlackLogger\SlackLogger\bin\Debug\netcoreapp2.2\SlackLogger.deps.json
+C:\Github\slack-logger\SlackLogger\SlackLogger\bin\Debug\netcoreapp2.2\SlackLogger.dll
+C:\Github\slack-logger\SlackLogger\SlackLogger\obj\Debug\netcoreapp2.2\SlackLogger.csproj.CoreCompileInputs.cache
+C:\Github\slack-logger\SlackLogger\SlackLogger\obj\Debug\netcoreapp2.2\SlackLogger.AssemblyInfoInputs.cache
+C:\Github\slack-logger\SlackLogger\SlackLogger\obj\Debug\netcoreapp2.2\SlackLogger.AssemblyInfo.cs
+C:\Github\slack-logger\SlackLogger\SlackLogger\bin\Debug\netcoreapp2.2\SlackLogger.pdb
+C:\Github\slack-logger\SlackLogger\SlackLogger\obj\Debug\netcoreapp2.2\SlackLogger.dll
+C:\Github\slack-logger\SlackLogger\SlackLogger\obj\Debug\netcoreapp2.2\SlackLogger.pdb
