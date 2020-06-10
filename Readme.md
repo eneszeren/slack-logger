@@ -1,6 +1,6 @@
 # SlackLog
 
-I developed a logger package for Nuget. SlackLog is using Slack for logging. This has simple usage.
+I developed a logger package for Nuget. SlackLog is using Slack for logging. This has simple usage. You can look at [SlackLog](https://www.nuget.org/packages/SlackLog/)
 
 
 ### Feature
