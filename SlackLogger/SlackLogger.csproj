@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SlackLog</PackageId>
+    <Authors>Enes Zeren</Authors>
+    <Company>Enes Zeren</Company>
+    <Product>SlackLog</Product>
+    <RepositoryUrl>https://github.com/eneszeren/slack-logger</RepositoryUrl>
+    <PackageTags>Slack, Slack Api, Logging, Logger,Slack Logger</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
