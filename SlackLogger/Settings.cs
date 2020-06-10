@@ -44,9 +44,7 @@ namespace SlackLogger
             Warning = 3,
             Error = 4,
             LogsDelete = 5,
-            LogsEdit = 6,
-            Rebate = 7,
-            RebateError = 8,
+            LogsEdit = 6
         }
     }
 }

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SlackLogger\SlackLogger.csproj" />
+    <PackageReference Include="SlackLog" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
