@@ -9,6 +9,10 @@
     <Product>SlackLog</Product>
     <RepositoryUrl>https://github.com/eneszeren/slack-logger</RepositoryUrl>
     <PackageTags>Slack, Slack Api, Logging, Logger,Slack Logger</PackageTags>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <Description>I developed a logger package for Nuget. SlackLog is using Slack for logging.</Description>
+    <PackageReleaseNotes>This version working with new Slack API changes. Another, fixed some bugs.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

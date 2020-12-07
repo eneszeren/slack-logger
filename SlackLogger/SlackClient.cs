@@ -2,8 +2,10 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SlackLogger
@@ -19,10 +21,10 @@ namespace SlackLogger
         private string _botName { get; set; }
         private string _prefix { get; set; }
         private Dictionary<Options, string> eventLinks = new Dictionary<Options, string> {
-            { Options.CreateChannel, "https://slack.com/api/channels.create"},
+            { Options.CreateChannel, "https://slack.com/api/conversations.create"},
             { Options.SendMessage,"https://slack.com/api/chat.postMessage"},
-            { Options.ChannelList,"https://slack.com/api/channels.list"},
-            { Options.InviteChannel,"https://slack.com/api/channels.invite"},
+            { Options.ChannelList,"https://slack.com/api/conversations.list"},
+            { Options.InviteChannel,"https://slack.com/api/conversations.invite"},
             { Options.UserList,"https://slack.com/api/users.list"}
         };
         private enum Options
@@ -51,11 +53,13 @@ namespace SlackLogger
 
         public async void SendMessage(string msg, SlackDto.SlackType type, bool isAttachment = false)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             await WriteMessage(msg, type.ToString().ToLower(), isAttachment);
         }
 
         public async void SendMessage(string msg, string channelName)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             await WriteMessage(msg, channelName.ToLower());
         }
 
@@ -110,7 +114,7 @@ namespace SlackLogger
                     }
                 }
                 #endregion
-                var postObject = new { channel = channelID, user = botID };
+                var postObject = new { channel = channelID, users = botID };
                 await AppRequest(eventLinks[Options.InviteChannel], HttpMethod.Post, postObject);
             }
             catch
@@ -158,7 +162,9 @@ namespace SlackLogger
             try
             {
                 var postObject = new { name = channelName, validate = true };
-                await AppRequest(eventLinks[Options.CreateChannel], HttpMethod.Post, postObject);
+                HttpResponseMessage result = await AppRequest(eventLinks[Options.CreateChannel], HttpMethod.Post, postObject);
+                string res =await result.Content.ReadAsStringAsync();
+
 
             }
             catch
@@ -194,30 +200,49 @@ namespace SlackLogger
         private async Task<HttpResponseMessage> AppRequest(string url, HttpMethod method, object postObject = null)
         {
 
-            if (method == HttpMethod.Post)
+            try
             {
-                var json = JsonConvert.SerializeObject(postObject);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                return await _appClient.PostAsync(url, content);
+                if (method == HttpMethod.Post)
+                {
+                    var json = JsonConvert.SerializeObject(postObject);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    HttpResponseMessage result = await _appClient.PostAsync(url, content);
+                    string res =await result.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    return await _appClient.GetAsync(url);
+                }
             }
-            else
+            catch
             {
-                return await _appClient.GetAsync(url);
+                return new HttpResponseMessage();
             }
         }
 
         private async Task<HttpResponseMessage> BotRequest(string url, HttpMethod method, object postObject = null)
         {
+            try
+            {
 
-            if (method == HttpMethod.Post)
-            {
-                var json = JsonConvert.SerializeObject(postObject);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                return await _botClient.PostAsync(url, content);
+                if (method == HttpMethod.Post)
+                {
+                    var json = JsonConvert.SerializeObject(postObject);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    HttpResponseMessage result = await _botClient.PostAsync(url, content);
+                    string res = await result.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    return await _botClient.GetAsync(url);
+                }
             }
-            else
+            catch (Exception exp)
             {
-                return await _botClient.GetAsync(url);
+
+                return new HttpResponseMessage();
             }
 
         }
