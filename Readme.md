@@ -29,4 +29,6 @@ And you should send setting to SLogger class and you can start use SlackLog. Oth
             logger.Slack("test", SlackDto.SlackType.Info);
 ```
 
+You can fork **[this repository](https://github.com/YusufSina/LoggingToSlack)** to develop Web API included SlackLog. Furthermore, There is a **[medium article](https://yusufsina.medium.com/net-core-slack-kanallar%C4%B1na-loglama-i%CC%87%C5%9Flemi-84d1b9f44458)** shows how to use SlackLog with more detail.
+
 If you give me your feedback I will be happy.
